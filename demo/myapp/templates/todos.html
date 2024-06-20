@@ -1,9 +1,23 @@
 {% extends "base.html" %}
+{% load static %}  <!-- Load the static files tag library -->
 
 {% block content %}
-<h1>Workout Tracker</h1>
+<style>
+  body {
+    background-image: url('{% static "images/appbacky.jpg" %}'); /* Use the static tag to get the correct URL */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  ul li {
+    color: white; /* Change the text color to white */
+  }
+</style>
+
+<h1 style="color:white;">Workout Tracker</h1>
 <ul>
-  {% for todo in todos %}
+  {% for todo in todos%}
   <li>
     {{ todo.title }}: {% if todo.completed %}Completed{% else %}Not completed{% endif %}
     (Weight: {{ todo.weight }})
