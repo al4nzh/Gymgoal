@@ -1,7 +1,8 @@
+
 from django import forms
-from .models import Todo
+from .models import TodoItem  
 
 class TodoForm(forms.ModelForm):
     class Meta:
-        model = Todo
+        model = TodoItem  
         fields = ['title', 'weight', 'completed']

@@ -1,4 +1,29 @@
-{% extends "base.html" %} {% block title %} Home Page {% endblock %}
+{% extends "base.html" %} 
+{% load static %}  <!-- Load the static files tag library -->
+
+{% block title %} 
+Home Page 
+{% endblock %}
+
 {% block content %}
-<p>this is the home page</p>
+<img src="{% static 'images/logogo.jpg' %}" alt="Logo" width="300" height="300" class="mb-3">
+<h2>About Our Application</h2>
+<p>
+  In today's fast-paced world, maintaining a healthy lifestyle and keeping track of fitness goals can be challenging. Our gym application was built to address these challenges by providing an easy-to-use platform for tracking workouts, monitoring progress, and staying motivated. Whether you are a fitness enthusiast or just starting your fitness journey, our application is designed to support you every step of the way.
+</p>
+<p>
+  The main reasons we built this gym application include:
+</p>
+<ul>
+  <li><strong>Convenience:</strong> Keep all your workout data in one place, accessible from anywhere and at any time.</li>
+  <li><strong>Progress Tracking:</strong> Monitor your progress over time with detailed logs and analytics, helping you to stay on track with your fitness goals.</li>
+  <li><strong>Motivation:</strong> Set goals, track achievements, and stay motivated with reminders and progress updates.</li>
+  <li><strong>Community:</strong> Connect with other fitness enthusiasts, share your progress, and get inspired by the community.</li>
+  <li><strong>Customization:</strong> Tailor your workout plans to fit your personal fitness level and goals, with customizable routines and exercises.</li>
+</ul>
+<p>
+  Our mission is to make fitness accessible, engaging, and rewarding for everyone. We hope this application helps you achieve your fitness goals and leads you towards a healthier, happier lifestyle.
+</p>
+
+<p>Thank you for choosing our Workout Tracker Application. Let's get moving and achieve our fitness goals together!</p>
 {% endblock %}
