@@ -36,3 +36,6 @@ def delete_todo(request, pk):
         todo.delete()
         return redirect('todos')  # Redirect to the todos view
     return render(request, 'delete_todo.html', {'todo': todo})
+
+def contact(request):
+    return render(request, "contact.html")
