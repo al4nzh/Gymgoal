@@ -45,7 +45,7 @@
     text-decoration: none;
   }
   .add-workout-btn:hover {
-    background-color: #68737e;
+    background-color: #0056b3;
   }
 </style>
 
@@ -56,9 +56,11 @@
       {% for todo in todos %}
       <li class="workout-item">
         {{ todo.title }}: {% if todo.completed %}Completed{% else %}Not completed{% endif %}
-        (Weight: {{ todo.weight }})
+        (Reps: {{ todo.reps }})
+        (Weight: {{ todo.latest_weight }})
         <a href="{% url 'edit_todo' todo.pk %}">Edit</a>
         <a href="{% url 'delete_todo' todo.pk %}">Delete</a>
+        <a href="{% url 'progress_graph' todo.pk %}">Progress Graph</a>
       </li>
       {% endfor %}
     </ul>
