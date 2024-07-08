@@ -17,3 +17,15 @@ class WeightLog(models.Model):
 
     def __str__(self):
         return f"{self.todo.title} - {self.date} - {self.weight}"
+
+class FoodEntry(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='food_entries')    
+    name = models.CharField(max_length=200)
+    calories = models.IntegerField()
+    carbs = models.FloatField()
+    protein = models.FloatField()
+    fats = models.FloatField()
+    date = models.DateField(auto_now_add=True)
+    
+    def __str__(self):
+        return f"{self.name} - {self.calories} calories"

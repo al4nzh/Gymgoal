@@ -5,6 +5,11 @@ from .forms import TodoForm, WeightLogForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 import json
+from rest_framework import generics
+from .models import FoodEntry
+from .serializers import FoodEntrySerializer
+from .forms import FoodEntryForm
+
 
 def home(request):
     return render(request, "home.html")
@@ -85,3 +90,55 @@ def register(request):
     else:
         form = UserCreationForm()
     return render(request, 'register.html', {'form': form})
+@login_required
+def food_entries(request):
+    if request.method == 'POST':
+        form = FoodEntryForm(request.POST)
+        if form.is_valid():
+            food_entry = form.save(commit=False)
+            food_entry.user = request.user
+            food_entry.save()
+            return redirect('food-entries')
+    else:
+        form = FoodEntryForm()
+
+    food_entries = FoodEntry.objects.filter(user=request.user)
+    return render(request, 'food_entries.html', {'form': form, 'food_entries': food_entries})
+
+@login_required
+def edit_food(request, pk):
+    item = get_object_or_404(FoodEntry, user=request.user, pk=pk)
+    if request.method == 'POST':
+        form = FoodEntryForm(request.POST, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect('food-entries')
+    else:
+        form = FoodEntryForm(instance=item)
+    return render(request, 'edit_food_entry.html', {'form': form})
+
+@login_required
+def delete_food(request, pk):
+    item = get_object_or_404(FoodEntry, user=request.user, pk=pk)
+    if request.method == 'POST':
+        item.delete()
+        return redirect('food-entries')
+    return render(request, 'delete_food_entry.html', {'item': item})
+
+#API for future use
+class FoodEntryListCreate(generics.ListCreateAPIView):
+    queryset = FoodEntry.objects.all()
+    serializer_class = FoodEntrySerializer
+
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+class FoodEntryDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = FoodEntry.objects.all()
+    serializer_class = FoodEntrySerializer
+
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
