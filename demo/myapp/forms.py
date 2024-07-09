@@ -1,9 +1,9 @@
 from django import forms
-from .models import TodoItem, WeightLog
+from .models import WorkoutItem, WeightLog
 from .models import FoodEntry
-class TodoForm(forms.ModelForm):
+class WorkoutForm(forms.ModelForm):
     class Meta:
-        model = TodoItem
+        model = WorkoutItem
         fields = ['title', 'reps', 'completed']
 
 class WeightLogForm(forms.ModelForm):

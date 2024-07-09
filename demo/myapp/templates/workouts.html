@@ -58,8 +58,8 @@
         {{ todo.title }}: {% if todo.completed %}Completed{% else %}Not completed{% endif %}
         (Reps: {{ todo.reps }})
         (Weight: {{ todo.latest_weight }})
-        <a href="{% url 'edit_todo' todo.pk %}">Edit</a>
-        <a href="{% url 'delete_todo' todo.pk %}">Delete</a>
+        <a href="{% url 'edit_workout' todo.pk %}">Edit</a>
+        <a href="{% url 'delete_workout' todo.pk %}">Delete</a>
         <a href="{% url 'progress_graph' todo.pk %}">Progress Graph</a>
       </li>
       {% endfor %}
