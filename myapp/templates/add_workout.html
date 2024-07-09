@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} 
+Add Todo 
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+  <h2 class="text-center">Add Workout</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ todo_form.as_p }}
+    <h3>Weight Log</h3>
+    {{ weight_log_form.as_p }}
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>
+{% endblock %}
