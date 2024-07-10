@@ -103,7 +103,27 @@ def food_entries(request):
         form = FoodEntryForm()
 
     food_entries = FoodEntry.objects.filter(user=request.user)
-    return render(request, 'food_entries.html', {'form': form, 'food_entries': food_entries})
+    
+    total_calories = 0
+    total_carbs = 0
+    total_protein = 0
+    total_fats  = 0
+    for entry in food_entries:
+        total_calories += entry.calories
+        total_carbs += entry.carbs
+        total_protein += entry.protein
+        total_fats += entry.fats
+    
+    context = {
+        'form': form,
+        'food_entries': food_entries,
+        'total_calories': total_calories,
+        'total_carbs': total_carbs,
+        'total_protein': total_protein,
+        'total_fats': total_fats,
+    }
+    
+    return render(request, 'food_entries.html', context)
 
 @login_required
 def edit_food(request, pk):
