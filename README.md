@@ -2,6 +2,12 @@
 
 This is a Django-based application for tracking workouts. Users can log their workout routines, update them, and monitor progress over time. The application supports user authentication, allowing users to manage their own workout logs.
 
+
+## Live Demo
+
+You can view the live demo of this project [here](http://yourusername.pythonanywhere.com).
+
+
 ## Features
 
 - User authentication: Sign up, log in, log out
