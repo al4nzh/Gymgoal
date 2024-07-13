@@ -5,7 +5,7 @@ This is a Django-based application for tracking workouts. Users can log their wo
 
 ## Live Demo
 
-You can view the live demo of this project [here](http://yourusername.pythonanywhere.com).
+You can view the live demo of this project [here](http://alanzh.pythonanywhere.com).
 
 
 ## Features
